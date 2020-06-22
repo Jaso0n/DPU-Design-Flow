@@ -11,9 +11,13 @@
 
 2）选择PS中的*PS-PL Configuration*，展开*HP Slave AXI Interface*，勾选*HP0*到*HP2*。这些IO在后面会与DPU的*DATA0*,*DATA1*,*INSTR*接口相连接；
 
-3）选择*Arch*界面，配置*DPU IP*选择DPU的大小为B1152，*RAM Usage*的大小为High，关闭*DepthWiseConv*，*ReLU Type*为*ReLU+LeakyReLU+ReLU6*，与ZYNQ7000使用时，DPU不支持SoftMax的计算，这个得放在ARM CPU里面算（问题不大）。选择*Advanced*界面，*S-AXI Clock Mode*这里可选*Common with M-AXI Clock*也可以选*Independent*，这里我们选*Independent*。配置完按OK；**Tips:这么配置后*DSP Slice Count = 194, Block-RAM Count = 139.5*。**
+3）配置*DPU IP*，选择*Arch*界面，DPU的大小设置为为B1152，*RAM Usage*的大小为High，关闭*DepthWiseConv*，*ReLU Type*为*ReLU+LeakyReLU+ReLU6*，与ZYNQ7000使用时，DPU不支持SoftMax的计算，这个得放在ARM CPU里面算（问题不大）。选择*Advanced*界面，*S-AXI Clock Mode*这里可选*Common with M-AXI Clock*也可以选*Independent*，这里我们选*Independent*。配置完按OK；**Tips:这么配置后*DSP Slice Count = 194, Block-RAM Count = 139.5*。**
 
-4）配置*Clock Wizard*输出两路时钟，频率分别为90MHz和180MHz，90MHz的时钟是DPU的系统时钟，180MHz的时钟是DDR-DSP的时钟将这两路时钟依次与DPU相连接。DPU上S_AXI的时钟由ZYNQ模块的*FCLK_CLK0*提供。__时钟与复位信号的搭配关系是：相同时间域的复位信号连接到一起__
+4）配置*Clock Wizard*输出两路时钟，频率分别为90MHz和180MHz，90MHz的时钟是DPU的系统时钟，180MHz的时钟是DDR-DSP的时钟将这两路时钟依次与DPU相连接。DPU上S_AXI的时钟由ZYNQ模块的*FCLK_CLK0*提供。__时钟与复位信号的搭配关系是：相同时间域的复位信号连接到一起。__
+
+5）将*DPU0_M_AXI_DATA0-1*，*DPU0_M_AXI_INSTR*与*AXI Interconnect*连接到一起（可能是起到缓冲的作用，应该是可以直接与*HP0-2*相连）。
+
+![]()
 
 
 
