@@ -1,11 +1,12 @@
 # DPU 设计流程
   整个流程需要用到Vivado，vitis和petalinux等工具，版本均为2020.1。最新的设计分为两种，Vivado+Petalinux的设计，Vivado+Petalinux+vitis AI库的快速设计
 ## Vivado+Petalinux设计流程
-### 1.下载[DPU TRD v3.0][1],从中获得DPU IP。
+### Vivado流程
+#### 1.下载[DPU TRD v3.0][1],从中获得DPU IP。
 
 ![](https://github.com/Jaso0n/DPU-Design-Flow/blob/master/ZedBoard/readme_image/dpu.png)
 
-### 2.完成Block Design
+#### 2.完成Block Design
 
 1）依次添加*ZYNQ7 Processing System*,*DPU IP*,*Clock Wizard*,*AXI Interconnect*,*Processor System Reset*模块；
 
@@ -22,6 +23,21 @@
 ![](https://github.com/Jaso0n/DPU-Design-Flow/blob/master/ZedBoard/readme_image/hier_clk_rst_gen.png)
 
 ![](https://github.com/Jaso0n/DPU-Design-Flow/blob/master/ZedBoard/readme_image/hier_dpu2hp.png)
+
+#### 3.生成Bitstream，导出硬件文件
+1）通过Address Editor分配DPU的内存，貌似自动分配就行了
+
+![](https://github.com/Jaso0n/DPU-Design-Flow/blob/master/ZedBoard/readme_image/address.png)
+
+2）点击*Validate Block Design*。
+
+3）点击*Generate Bitstream*
+
+4）点击*Export hardware*，注意勾选*include bitstream*
+
+到这里Vivado上的工作就做完了
+
+### 使用PetaLinux建立DPU+ARM CPU的操作系统和软件系统
 
 
 
