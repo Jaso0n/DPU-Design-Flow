@@ -1,13 +1,17 @@
 # DPU 设计流程
   整个流程需要用到Vivado，vitis和petalinux等工具，版本均为2020.1。最新的设计分为两种，Vivado+Petalinux的设计，Vivado+Petalinux+vitis AI库的快速设计
 ## Vivado+Petalinux设计流程
-1.下载[DPU TRD v3.0][1],从中获得DPU IP。
+### 1.下载[DPU TRD v3.0][1],从中获得DPU IP。
 
 ![](https://github.com/Jaso0n/DPU-Design-Flow/blob/master/ZedBoard/readme_image/dpu.png)
 
-2.完成Block Design
+### 2.完成Block Design
 
-1）添加ZYNQ7 Processing System
+1）依次添加*ZYNQ7 Processing System*,*DPU IP*,*Clock Wizard*,*AXI Interconnect*,*Processor System Reset*模块
+
+2）选择PS中的*PS-PL Configuration*，展开*HP Slave AXI Interface*，勾选*HP0*到*HP2*。这些IO在后面会与DPU的*DATA0*,*DATA1*,*INSTR*接口相连接
+
+3）
 
 
 
