@@ -17,7 +17,7 @@
 
 5）将*DPU0_M_AXI_DATA0-1*，*DPU0_M_AXI_INSTR*与*AXI Interconnect*连接到一起（可能是起到缓冲的作用，应该是可以直接与*HP0-2*相连）。
 
-![]()
+![](https://github.com/Jaso0n/DPU-Design-Flow/blob/master/ZedBoard/readme_image/block_design.png)
 
 
 
