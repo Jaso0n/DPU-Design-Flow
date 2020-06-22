@@ -19,15 +19,16 @@
 
 ![](https://github.com/Jaso0n/DPU-Design-Flow/blob/master/ZedBoard/readme_image/block_design.png)
 
+![](https://github.com/Jaso0n/DPU-Design-Flow/blob/master/ZedBoard/readme_image/hier_clk_rst_gen.png)
+
+![](https://github.com/Jaso0n/DPU-Design-Flow/blob/master/ZedBoard/readme_image/hier_dpu2hp.png)
 
 
 
-
-
-
-
-[1]:https://www.xilinx.com/products/design-tools/ai-inference/ai-developer-hub.html#edge
 ### 吐槽
    官方TRD是ZCU102的参考设计，这块开发板能发挥DPU的最大性能，部署了2个DPU，基本频率为325MHz，DDR-DSP的频率是650MHz，但是这块板子$2,495，穷人不配研究。参考TRD和参考资料，在ZedBoard上完成单核DPU设计，而且频率只有可怜的90MHz基本运行频率，DDR-DSP的频率是180MHz。
 
 ![](https://www.xilinx.com/products/boards-and-kits/ek-u1-zcu102-g/_jcr_content/root/parsys/xilinxtabs2/childParsys-hardware/xilinximage.img.jpg/1519410010855.jpg)
+
+
+[1]:https://www.xilinx.com/products/design-tools/ai-inference/ai-developer-hub.html#edge
