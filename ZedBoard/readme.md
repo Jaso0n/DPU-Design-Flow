@@ -1,12 +1,30 @@
-# DPU 设计流程
-  整个流程需要用到Vivado，vitis和petalinux等工具，版本均为2020.1。最新的设计分为两种，Vivado+Petalinux的设计，Vivado+Petalinux+vitis AI库的快速设计
-## Vivado+Petalinux设计流程
-### Vivado流程
-#### 1.下载[DPU TRD v3.0][1],从中获得DPU IP。
+#  DPU in ZedBoard 设计指南
+
+## 开发环境
+
+__设计工具__
+
+1.[Vivado 2020.1][1]
+
+2.[Petalinux 2020.1][2]
+
+3.[Vitis2020.1][3]
+
+4.VMware + Ubuntu18.04 LTS
+
+5.Windows10
+
+__环境介绍：__Vivado和Vitis安装在Windows下，Petalinux安装在Ubuntu系统中。Vivado完成硬件设计，Petalinux完成ZedBoard_DPU的操作系统设计，Vitis完成应用软件的设计。
+
+__开发板介绍：__板载芯片是XC7Z020CLG484 -1，DSP资源220，Block RAM资源4.9Mb
+
+## Vivado搭建硬件环境
+
+__1.获取[DPU_IP][4]__
 
 ![](https://github.com/Jaso0n/DPU-Design-Flow/blob/master/ZedBoard/readme_image/dpu.png)
 
-#### 2.完成Block Design
+__2.完成Block Design__
 
 1）依次添加*ZYNQ7 Processing System*,*DPU IP*,*Clock Wizard*,*AXI Interconnect*,*Processor System Reset*模块；
 
@@ -24,7 +42,8 @@
 
 ![](https://github.com/Jaso0n/DPU-Design-Flow/blob/master/ZedBoard/readme_image/hier_dpu2hp.png)
 
-#### 3.生成Bitstream，导出硬件文件
+__3.生成Bitstream，导出XSA文件__
+
 1）通过Address Editor分配DPU的内存，貌似自动分配就行了
 
 ![](https://github.com/Jaso0n/DPU-Design-Flow/blob/master/ZedBoard/readme_image/address.png)
@@ -35,16 +54,15 @@
 
 4）点击*Export hardware*，注意勾选*include bitstream*
 
-到这里Vivado上的工作就做完了
+__到这里Vivado上的工作就做完了__
 
-### 使用PetaLinux建立DPU+ARM CPU的操作系统和软件系统
-
-
-
-### 吐槽
-   官方TRD是ZCU102的参考设计，这块开发板能发挥DPU的最大性能，部署了2个DPU，基本频率为325MHz，DDR-DSP的频率是650MHz，但是这块板子$2,495，穷人不配研究。参考TRD和参考资料，在ZedBoard上完成单核DPU设计，而且频率只有可怜的90MHz基本运行频率，DDR-DSP的频率是180MHz。
-
-![](https://www.xilinx.com/products/boards-and-kits/ek-u1-zcu102-g/_jcr_content/root/parsys/xilinxtabs2/childParsys-hardware/xilinximage.img.jpg/1519410010855.jpg)
+## Petalinux搭建DPU+ARM CPU的Linux系统
 
 
-[1]:https://www.xilinx.com/products/design-tools/ai-inference/ai-developer-hub.html#edge
+
+
+
+[1]:https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vivado-design-tools.html
+[2]:https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vitis.html
+[3]:https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/embedded-design-tools.html
+[4]:https://www.xilinx.com/products/design-tools/ai-inference/ai-developer-hub.html#edge
