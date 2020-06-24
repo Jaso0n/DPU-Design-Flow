@@ -14,9 +14,9 @@ __设计工具__
 
 5.Windows10
 
-**环境介绍：** Vivado和Vitis安装在Windows下，Petalinux安装在Ubuntu系统中。Vivado完成硬件设计，Petalinux完成ZedBoard_DPU的操作系统设计，Vitis完成应用软件的设计。
+__环境介绍：__Vivado和Vitis安装在Windows下，Petalinux安装在Ubuntu系统中。Vivado完成硬件设计，Petalinux完成ZedBoard_DPU的操作系统设计，Vitis完成应用软件的设计。
 
-**开发板介绍：** 板载芯片是XC7Z020CLG484 -1，DSP资源220，Block RAM资源4.9Mb
+__开发板介绍：__板载芯片是XC7Z020CLG484 -1，DSP资源220，Block RAM资源4.9Mb
 
 ## Vivado搭建硬件环境
 
