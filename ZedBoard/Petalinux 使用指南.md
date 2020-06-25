@@ -84,7 +84,7 @@ __Zynq UltraScale+ MPSoC__
 
 `petalinux-create --type project --template <PLATFORM> --name <your_prj_name>`
 
-*<PLATFORM*> 
+_<PLATFORM>_ 
 
 -----zynqMP (Zynq UltraScale+MPSoC)
 
@@ -100,7 +100,7 @@ petalinux会在你的workspace下创建一个<your_prj_name>文件夹，所有�
 
 `petalinux-config --get-hw-description /path/to/XSA`
 
-![](C:\Users\Jason\Desktop\dpu_zedboard\petalinux_guide_image\config.png)
+![](https://github.com/Jaso0n/DPU-Design-Flow/blob/master/ZedBoard/petalinux_guide_image/config.png)
 
 需要注意的是，确保__*Subsystem AUTO Hardware Setting*__被选上。该选项中包括了处理器、内存、串口、以太网、Flash、SD、RTC硬件信息，以及BOOT.BIN，U-Boot，内核，rootfs和dtb软件信息。**根据你的需要，通过这些子选项可以对系统进行修改，一定要记得save，再退出。**
 
@@ -118,9 +118,9 @@ zcu102-rev1.0, zcu104-revc, zcu106-reva, zcu111-reva
 
 `petalinux-config`
 
-选择 __*Image Packaging Configuration*__ 修改 **_Root filesystem type_**为__*EXT4(SD/eMMC/SATA/USB)*__
+选择 __*Image Packaging Configuration*__ 修改 __*Root filesystem type*__ 为 __*EXT4(SD/eMMC/SATA/USB)*__
 
- ***Root filesystem type***可以是
+ **_Root filesystem type_**可以是
 
 **---INITRAMFS---INITRD---JFFS2---NFS---EXT4(SD/eMMC/SATA/USB)**
 
