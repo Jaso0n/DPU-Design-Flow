@@ -132,7 +132,9 @@ zcu102-rev1.0, zcu104-revc, zcu106-reva, zcu111-reva
 
 ##### 2.4.2 修改启动镜像的存储方式
 
-选择*** Subsystem AUTO Hardware Settings***    ---> *** Advanced bootable images storages settings*** 
+选择*** Subsystem AUTO Hardware Settings***
+---> 
+*** Advanced bootable images storages settings*** 
 
 ***boot image settings***该选项配置BOOT.BIN文件的存储方式，可选为**primary flash**或者**primary sd**
 
@@ -144,10 +146,15 @@ zcu102-rev1.0, zcu104-revc, zcu106-reva, zcu111-reva
 
 ##### 2.4.3 为Rootfs添加依赖库和包
 
-复制[extra opencv][1]文件夹到***/path/to/your/prj/dir/project-spec/meta-user/recipes-ai/***
+复制[extra opencv][1]文件夹到
+***/path/to/your/prj/dir/project-spec/meta-user/recipes-ai/***
+
 如果没有***recipes-ai***可以新建一个
 
-找到*/path/to/your/prj/dir/project-spec/meta-user/conf/**user-rootfsconfig***文件，添加下列内容
+找到
+*/path/to/your/prj/dir/project-spec/meta-user/conf/*
+***user-rootfsconfig***
+文件，添加下列内容
 
 ```
 # Xilinx Run Time, XRT support
