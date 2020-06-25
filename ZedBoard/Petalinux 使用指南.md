@@ -104,7 +104,8 @@ petalinux会在你的workspace下创建一个<your_prj_name>文件夹，所有�
 
 需要注意的是，确保__*Subsystem AUTO Hardware Setting*__ 被选上。该选项中包括了处理器、内存、串口、以太网、Flash、SD、RTC硬件信息，以及BOOT.BIN，U-Boot，内核，rootfs和dtb软件信息。**根据你的需要，通过这些子选项可以对系统进行修改，一定要记得save，再退出。**
 
-补充：选择***DTG Settings***出现***(template)MACHINE_NAME***
+补充：选择***DTG Settings***出现
+***(template)MACHINE_NAME***
 
 如果你使用的是Xilinx的开发板，template参数可以是
 
@@ -118,9 +119,14 @@ zcu102-rev1.0, zcu104-revc, zcu106-reva, zcu111-reva
 
 `petalinux-config`
 
-选择 ***Image Packaging Configuration***修改***Root filesystem type***为***EXT4(SD/eMMC/SATA/USB)***
+选择
+***Image Packaging Configuration***
+修改
+***Root filesystem type***
+为
+***EXT4(SD/eMMC/SATA/USB)***
 
- ***Root filesystem type***可以是
+***Root filesystem type***可以是
 
 **---INITRAMFS---INITRD---JFFS2---NFS---EXT4(SD/eMMC/SATA/USB)**
 
