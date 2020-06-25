@@ -10,13 +10,13 @@
 
 2. 建PetaLinux工程
 
-   `petalinux-create -t project -n yourprojectname`
+   `petalinux-create -t project -n your_project_name`
 
 3. 据硬件平台描述文件（.XSA/.BSP）创建工程
 
    `petalinux-config --get-hw-description /path/to/XSA/or/BSP`
 
-4. 置系统选项
+4. 配置系统选项
 
    `petalinux-config`
 
@@ -54,27 +54,136 @@
 
 ### 2、通过Vivado输出的硬件描述文件创建工程
 
-​	你需要熟练使用Vivado工具，完成Block Design等设计，生成Bitstream，导出**硬件描述文件（.XSA）**。在设计时，需要对芯片做如下配置
+#### 2.1 准备阶段
+
+​	你需要熟练使用Vivado工具，完成Block Design等设计，生成Bitstream，导出**硬件描述文件（.XSA）**。在使用Vivado工具进行设计时，需要对PS模块做如下配置
 
 __Zynq-7000 Devices__
 
-1.添加一个TTC模块
+1.添加一个TTC模块，当有多个TTC模块时，petalinux默认使用第一个。
 
-2.至少32MB的内存
+2.至少32MB的内存（DDR3 RAM > 32MB）
 
-3.串口
+3.PS模块的串口
 
 4.外部存储器，例如QSPI Flash和SD/MMC
 
-5.以太网（一般都选上）
+5.PS模块的以太网（一般选上）
 
 __Zynq UltraScale+ MPSoC__
 
-1.至少64MB的内存
+1.至少64MB的内存（DDR3/4 RAM > 64MB）
 
-2.串口
+2.PS模块的串口
 
 3.外部存储器，例如QSPI Flash和SD/MMC
 
-4.以太网（一般选上）
+4.PS模块的以太网（一般选上）
 
+### 2.2 根据模板创建工程
+
+`petalinux-create --type project --template <PLATFORM> --name <your_prj_name>`
+
+*<PLATFORM*> 
+
+-----zynqMP (Zynq UltraScale+MPSoC)
+
+-----zynq (Zynq-7000 devices)
+
+-----microblaze (MicroBlaze processor)
+
+*<your_prj_name>*
+
+petalinux会在你的workspace下创建一个<your_prj_name>文件夹，所有的工程文件都在里面。
+
+### 2.3 导入硬件信息初始化工程
+
+`petalinux-config --get-hw-description /path/to/XSA`
+
+![](C:\Users\Jason\Desktop\dpu_zedboard\petalinux_guide_image\config.png)
+
+需要注意的是，确保__*Subsystem AUTO Hardware Setting*__被选上。该选项中包括了处理器、内存、串口、以太网、Flash、SD、RTC硬件信息，以及BOOT.BIN，U-Boot，内核，rootfs和dtb软件信息。**根据你的需要，通过这些子选项可以对系统进行修改，一定要记得save，再退出。**
+
+补充：选择__*DTG Settings*__ 出现__*(template)MACHINE_NAME*__
+
+如果你使用的是Xilinx的开发板，template参数可以是
+
+ac701-full, ac701-lite, kc705-full, kcu105, zcu1275-revb,
+zcu1285-reva, zc1751-dc1, zc1751-dc2, zc702, zc706, avnet-ultra96-rev1, zcu100-revc,
+zcu102-rev1.0, zcu104-revc, zcu106-reva, zcu111-reva
+
+### 2.4 进一步配置工程
+
+##### 2.4.1 修改Rootfs的类型
+
+`petalinux-config`
+
+选择 __*Image Packaging Configuration*__ 修改 **_Root filesystem type_**为__*EXT4(SD/eMMC/SATA/USB)*__
+
+ ***Root filesystem type***可以是
+
+**---INITRAMFS---INITRD---JFFS2---NFS---EXT4(SD/eMMC/SATA/USB)**
+
+##### 2.4.2 修改启动镜像的存储方式
+
+选择__*Subsystem AUTO Hardware Settings*__    ---> __*Advanced bootable images storages settings*__
+
+__*boot image settings* __该选项配置BOOT.BIN文件的存储方式，可选为**primary flash**或者**primary sd**
+
+__*u-boot env parition settings* __该选项配置u-boot文件的存储方式，可选为**primary flash**或者**primary sd**
+
+__*kernel image settings* __该选项配置linux内核的存储方式，可选为**primary flash**、**primary sd和****ethernet**
+
+__*jffs2 rootfs image settings*__和__*dtb image settings*__默认就好
+
+##### 2.4.3 为Rootfs添加依赖库和包
+
+复制[extra opencv][1]文件夹到**_/path/to/your/prj/dir/project-spec/meta-user/recipes-ai/_**，如果没有**_recipes-ai_**文件夹可以新创建一个。
+
+找到_/path/to/your/prj/dir/project-spec/meta-user/conf/**user-rootfsconfig**_文件，添加下列内容
+
+```
+# Xilinx Run Time, XRT support
+CONFIG_xrt
+CONFIG_xrt-dev
+CONFIG_zocl
+CONFIG_opencl-clhpp-dev
+CONFIG_opencl-headers-dev
+CONFIG_packagegroup-petalinux-opencv
+CONFIG_packagegroup-petalinux-opencv-dev
+
+# DPU support
+CONFIG_glog
+CONFIG_gtest
+CONFIG_json-c
+CONFIG_protobuf
+CONFIG_python3-pip
+CONFIG_apt
+CONFIG_dpkg
+
+CONFIG_packagegroup-petalinux-x11
+CONFIG_packagegroup-petalinux-v4lutils
+CONFIG_packagegroup-petalinux-matchbox
+
+# Vitis AI packages
+CONFIG_gtest-staticdev
+CONFIG_json-c-dev
+CONFIG_protobuf-dev
+CONFIG_protobuf-c
+CONFIG_libeigen-dev
+
+# Native compiling support
+CONFIG_packagegroup-petalinux-self-hosted
+CONFIG_cmake
+
+# Extra opencv support
+CONFIG_opencv
+```
+
+`petalinux-config -c rootfs`
+
+
+
+
+
+[1]:https://github.com/Jaso0n/vitis_ai_custom_platform_flow/tree/master/ref_files/opencv
