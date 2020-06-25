@@ -56,7 +56,7 @@ __3.生成Bitstream，导出XSA文件__
 
 __到这里Vivado上的工作就做完了__
 
-## Petalinux搭建DPU+ARM CPU的Linux系统
+## Petalinux搭建DPU+ARM CPU的Linux系统，详细见[Petalinux 使用指南][5]
 
 
 
@@ -66,3 +66,4 @@ __到这里Vivado上的工作就做完了__
 [2]:https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vitis.html
 [3]:https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/embedded-design-tools.html
 [4]:https://www.xilinx.com/products/design-tools/ai-inference/ai-developer-hub.html#edge
+[5]:https://github.com/Jaso0n/DPU-Design-Flow/blob/master/ZedBoard/Petalinux%20%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97.md
