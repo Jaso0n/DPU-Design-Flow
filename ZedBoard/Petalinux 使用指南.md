@@ -115,7 +115,7 @@ zcu102-rev1.0, zcu104-revc, zcu106-reva, zcu111-reva
 
 ### 2.4 进一步配置工程
 
-##### 2.4.1 修改Rootfs的类型
+#### 2.4.1 修改Rootfs的类型
 
 `petalinux-config`
 
@@ -130,7 +130,7 @@ zcu102-rev1.0, zcu104-revc, zcu106-reva, zcu111-reva
 
 **---INITRAMFS---INITRD---JFFS2---NFS---EXT4(SD/eMMC/SATA/USB)**
 
-##### 2.4.2 修改启动镜像的存储方式
+#### 2.4.2 修改启动镜像的存储方式
 
 选择***Subsystem AUTO Hardware Settings***
 ---> 
@@ -144,7 +144,7 @@ zcu102-rev1.0, zcu104-revc, zcu106-reva, zcu111-reva
 
 ***jffs2 rootfs image settings***和***dtb image settings***默认就好
 
-##### 2.4.3 为Rootfs添加依赖库和包
+#### 2.4.3 为Rootfs添加依赖库和包
 
 复制[extra opencv][1]文件夹到
 ***/path/to/your/prj/dir/project-spec/meta-user/recipes-ai/***
