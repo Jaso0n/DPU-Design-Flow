@@ -132,9 +132,9 @@ zcu102-rev1.0, zcu104-revc, zcu106-reva, zcu111-reva
 
 ##### 2.4.2 修改启动镜像的存储方式
 
-选择*** Subsystem AUTO Hardware Settings***
+选择***Subsystem AUTO Hardware Settings***
 ---> 
-*** Advanced bootable images storages settings*** 
+***Advanced bootable images storages settings*** 
 
 ***boot image settings***该选项配置BOOT.BIN文件的存储方式，可选为**primary flash**或者**primary sd**
 
