@@ -56,7 +56,7 @@
 
 #### 2.1 准备阶段
 
-​	你需要熟练使用Vivado工具，完成Block Design等设计，生成Bitstream，导出**硬件描述文件（.XSA）**。在使用Vivado工具进行设计时，需要对PS模块做如下配置
+​	你需要熟练使用Vivado工具，完成Block Design等设计，生成Bitstream，导出**硬件描述文件.XSA**。在使用Vivado工具进行设计时，需要对PS模块做如下配置
 
 __Zynq-7000 Devices__
 
@@ -102,9 +102,11 @@ petalinux会在你的workspace下创建一个<your_prj_name>文件夹，所有�
 
 ![](https://github.com/Jaso0n/DPU-Design-Flow/blob/master/ZedBoard/petalinux_guide_image/config.png)
 
-需要注意的是，确保__*Subsystem AUTO Hardware Setting*__被选上。该选项中包括了处理器、内存、串口、以太网、Flash、SD、RTC硬件信息，以及BOOT.BIN，U-Boot，内核，rootfs和dtb软件信息。**根据你的需要，通过这些子选项可以对系统进行修改，一定要记得save，再退出。**
+需要注意的是，确保***Subsystem AUTO Hardware Setting***被选上。该选项中包括了处理器、内存、串口、以太网、Flash、SD、RTC硬件信息，以及BOOT.BIN，U-Boot，内核，rootfs和dtb软件信息。
+**根据你的需要，通过这些子选项可以对系统进行修改，一定要记得save，再退出。**
 
-补充：选择***DTG Settings***出现***(template)MACHINE_NAME***
+补充：选择***DTG Settings***出现
+***(template)MACHINE_NAME***
 
 如果你使用的是Xilinx的开发板，template参数可以是
 
@@ -118,23 +120,23 @@ zcu102-rev1.0, zcu104-revc, zcu106-reva, zcu111-reva
 
 `petalinux-config`
 
-选择 __*Image Packaging Configuration*__ 修改 **_Root filesystem type_**为__*EXT4(SD/eMMC/SATA/USB)*__
+选择***Image Packaging Configuration***修改***Root filesystem type***为***EXT4(SD/eMMC/SATA/USB)***
 
- ***Root filesystem type***可以是
+***Root filesystem type***可以是
 
 **---INITRAMFS---INITRD---JFFS2---NFS---EXT4(SD/eMMC/SATA/USB)**
 
 #### 2.4.2 修改启动镜像的存储方式
 
-选择__*Subsystem AUTO Hardware Settings*__    ---> __*Advanced bootable images storages settings*__
+选择***Subsystem AUTO Hardware Settings->Advanced bootable images storages settings***，出现下列选项。
 
-__*boot image settings* __该选项配置BOOT.BIN文件的存储方式，可选为**primary flash**或者**primary sd**
+***boot image settings***该选项配置BOOT.BIN文件的存储方式，可选为**primary flash**或者**primary sd**
 
-__*u-boot env parition settings* __该选项配置u-boot文件的存储方式，可选为**primary flash**或者**primary sd**
+***u-boot env parition settings***该选项配置u-boot文件的存储方式，可选为**primary flash**或者**primary sd**
 
-__*kernel image settings* __该选项配置linux内核的存储方式，可选为**primary flash**、**primary sd和****ethernet**
+***kernel image settings***该选项配置linux内核的存储方式，可选为**primary flash**、**primary sd和****ethernet**
 
-__*jffs2 rootfs image settings*__和__*dtb image settings*__默认就好
+***jffs2 rootfs image settings***和***dtb image settings***保持默认
 
 #### 2.4.3 为Rootfs添加依赖库和包
 
