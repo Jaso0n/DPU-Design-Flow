@@ -134,7 +134,7 @@ zcu102-rev1.0, zcu104-revc, zcu106-reva, zcu111-reva
 
 ***u-boot env parition settings***该选项配置u-boot文件的存储方式，可选为**primary flash**或者**primary sd**
 
-***kernel image settings***该选项配置linux内核的存储方式，可选为**primary flash**、**primary sd和****ethernet**
+***kernel image settings***该选项配置linux内核的存储方式，可选为**primary flash**、**primary sd**和**ethernet**
 
 ***jffs2 rootfs image settings***和***dtb image settings***保持默认
 
@@ -143,7 +143,7 @@ zcu102-rev1.0, zcu104-revc, zcu106-reva, zcu111-reva
 复制[extra opencv][1]文件夹到***/path/to/your/prj/dir/project-spec/meta-user/recipes-ai/*** 如果没有
 ***recipes-ai***文件夹可以新创建一个。
 
-找到*/path/to/your/prj/dir/project-spec/meta-user/conf/**user-rootfsconfig** *
+找到*/path/to/your/prj/dir/project-spec/meta-user/conf/**user-rootfsconfig***
 文件，添加下列内容
 
 ```
