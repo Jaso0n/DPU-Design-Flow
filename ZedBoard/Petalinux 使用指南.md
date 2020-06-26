@@ -100,11 +100,11 @@ petalinux会在你的workspace下创建一个<your_prj_name>文件夹，所有�
 
 `petalinux-config --get-hw-description /path/to/XSA`
 
-![](C:\Users\Jason\Desktop\dpu_zedboard\petalinux_guide_image\config.png)
+![](https://github.com/Jaso0n/DPU-Design-Flow/blob/master/ZedBoard/petalinux_guide_image/config.png)
 
 需要注意的是，确保__*Subsystem AUTO Hardware Setting*__被选上。该选项中包括了处理器、内存、串口、以太网、Flash、SD、RTC硬件信息，以及BOOT.BIN，U-Boot，内核，rootfs和dtb软件信息。**根据你的需要，通过这些子选项可以对系统进行修改，一定要记得save，再退出。**
 
-补充：选择__*DTG Settings*__ 出现__*(template)MACHINE_NAME*__
+补充：选择***DTG Settings***出现***(template)MACHINE_NAME***
 
 如果你使用的是Xilinx的开发板，template参数可以是
 
@@ -138,9 +138,11 @@ __*jffs2 rootfs image settings*__和__*dtb image settings*__默认就好
 
 #### 2.4.3 为Rootfs添加依赖库和包
 
-复制[extra opencv][1]文件夹到**_/path/to/your/prj/dir/project-spec/meta-user/recipes-ai/_**，如果没有**_recipes-ai_**文件夹可以新创建一个。
+复制[extra opencv][1]文件夹到***/path/to/your/prj/dir/project-spec/meta-user/recipes-ai/*** 如果没有
+***recipes-ai***文件夹可以新创建一个。
 
-找到_/path/to/your/prj/dir/project-spec/meta-user/conf/**user-rootfsconfig**_文件，添加下列内容
+找到*/path/to/your/prj/dir/project-spec/meta-user/conf/**user-rootfsconfig** *
+文件，添加下列内容
 
 ```
 # Xilinx Run Time, XRT support
@@ -182,13 +184,13 @@ CONFIG_opencv
 
 `petalinux-config -c rootfs`
 
-![](C:\Users\Jason\Desktop\dpu_zedboard\petalinux_guide_image\rootfs_config_main.png)
+![](https://github.com/Jaso0n/DPU-Design-Flow/blob/master/ZedBoard/petalinux_guide_image/rootfs_config.png)
 
 _Tips：在**PetaLinux Rootfs Settings**中可以修改登陆的密码**默认为root**，其他选项顾明思意，不清楚的选择进入后搜索每个packages的功能即可。_
 
 选择***user packages***勾选出现的文件包，在***Image Features***目录中开启***package-management***和***debug_tweaks***。
 
-![](C:\Users\Jason\Desktop\dpu_zedboard\petalinux_guide_image\rootfs_config.png)
+![](https://github.com/Jaso0n/DPU-Design-Flow/blob/master/ZedBoard/petalinux_guide_image/rootfs_config_main.png)
 
 #### （可选）2.4.4 shell的模式从dropbear替换为opensh
 
