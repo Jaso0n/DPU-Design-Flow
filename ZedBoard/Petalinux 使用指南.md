@@ -84,7 +84,7 @@ __Zynq UltraScale+ MPSoC__
 
 `petalinux-create --type project --template <PLATFORM> --name <your_prj_name>`
 
-_<PLATFORM>_ 
+*<PLATFORM*> 
 
 -----zynqMP (Zynq UltraScale+MPSoC)
 
@@ -100,12 +100,11 @@ petalinux会在你的workspace下创建一个<your_prj_name>文件夹，所有�
 
 `petalinux-config --get-hw-description /path/to/XSA`
 
-![](https://github.com/Jaso0n/DPU-Design-Flow/blob/master/ZedBoard/petalinux_guide_image/config.png)
+![](C:\Users\Jason\Desktop\dpu_zedboard\petalinux_guide_image\config.png)
 
-需要注意的是，确保__*Subsystem AUTO Hardware Setting*__ 被选上。该选项中包括了处理器、内存、串口、以太网、Flash、SD、RTC硬件信息，以及BOOT.BIN，U-Boot，内核，rootfs和dtb软件信息。**根据你的需要，通过这些子选项可以对系统进行修改，一定要记得save，再退出。**
+需要注意的是，确保__*Subsystem AUTO Hardware Setting*__被选上。该选项中包括了处理器、内存、串口、以太网、Flash、SD、RTC硬件信息，以及BOOT.BIN，U-Boot，内核，rootfs和dtb软件信息。**根据你的需要，通过这些子选项可以对系统进行修改，一定要记得save，再退出。**
 
-补充：选择***DTG Settings***出现
-***(template)MACHINE_NAME***
+补充：选择__*DTG Settings*__ 出现__*(template)MACHINE_NAME*__
 
 如果你使用的是Xilinx的开发板，template参数可以是
 
@@ -119,42 +118,29 @@ zcu102-rev1.0, zcu104-revc, zcu106-reva, zcu111-reva
 
 `petalinux-config`
 
-选择
-***Image Packaging Configuration***
-修改
-***Root filesystem type***
-为
-***EXT4(SD/eMMC/SATA/USB)***
+选择 __*Image Packaging Configuration*__ 修改 **_Root filesystem type_**为__*EXT4(SD/eMMC/SATA/USB)*__
 
-***Root filesystem type***可以是
+ ***Root filesystem type***可以是
 
 **---INITRAMFS---INITRD---JFFS2---NFS---EXT4(SD/eMMC/SATA/USB)**
 
 #### 2.4.2 修改启动镜像的存储方式
 
-选择***Subsystem AUTO Hardware Settings***
----> 
-***Advanced bootable images storages settings*** 
+选择__*Subsystem AUTO Hardware Settings*__    ---> __*Advanced bootable images storages settings*__
 
-***boot image settings***该选项配置BOOT.BIN文件的存储方式，可选为**primary flash**或者**primary sd**
+__*boot image settings* __该选项配置BOOT.BIN文件的存储方式，可选为**primary flash**或者**primary sd**
 
-***u-boot env parition settings***该选项配置u-boot文件的存储方式，可选为**primary flash**或者**primary sd**
+__*u-boot env parition settings* __该选项配置u-boot文件的存储方式，可选为**primary flash**或者**primary sd**
 
-***kernel image settings***该选项配置linux内核的存储方式，可选为**primary flash**、**primary sd**和**ethernet**
+__*kernel image settings* __该选项配置linux内核的存储方式，可选为**primary flash**、**primary sd和****ethernet**
 
-***jffs2 rootfs image settings***和***dtb image settings***默认就好
+__*jffs2 rootfs image settings*__和__*dtb image settings*__默认就好
 
 #### 2.4.3 为Rootfs添加依赖库和包
 
-复制[extra opencv][1]文件夹到
-***/path/to/your/prj/dir/project-spec/meta-user/recipes-ai/***
+复制[extra opencv][1]文件夹到**_/path/to/your/prj/dir/project-spec/meta-user/recipes-ai/_**，如果没有**_recipes-ai_**文件夹可以新创建一个。
 
-如果没有***recipes-ai***可以新建一个
-
-找到
-*/path/to/your/prj/dir/project-spec/meta-user/conf/*
-***user-rootfsconfig***
-文件，添加下列内容
+找到_/path/to/your/prj/dir/project-spec/meta-user/conf/**user-rootfsconfig**_文件，添加下列内容
 
 ```
 # Xilinx Run Time, XRT support
@@ -195,6 +181,25 @@ CONFIG_opencv
 ```
 
 `petalinux-config -c rootfs`
+
+![](C:\Users\Jason\Desktop\dpu_zedboard\petalinux_guide_image\rootfs_config_main.png)
+
+_Tips：在**PetaLinux Rootfs Settings**中可以修改登陆的密码**默认为root**，其他选项顾明思意，不清楚的选择进入后搜索每个packages的功能即可。_
+
+选择***user packages***勾选出现的文件包，在***Image Features***目录中开启***package-management***和***debug_tweaks***。
+
+![](C:\Users\Jason\Desktop\dpu_zedboard\petalinux_guide_image\rootfs_config.png)
+
+#### （可选）2.4.4 shell的模式从dropbear替换为opensh
+
+a)选择 ***Image Features***
+
+b)关闭***ssh-server-dropbear***，开启***ssh-server-openssh***
+
+c)前往目录***Filesystem Packages->misc->packagegroup-core-ssh-dropbear***，关闭***packagesgroup-core-ssh-dropbear***
+
+d)前往目录***Filesystem Packages->console->network->openssh***，开启***openssh，openssh-sftp-server，openssh-sshd，openssh-scp***
+
 
 
 
