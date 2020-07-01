@@ -9,7 +9,7 @@ The caffe model file ***ResNet-50-deploy.caffemodel*** is too big to upload, you
 
 # How to run this demo?
 
-Change the ***workspace*** and ***caffe_root*** to your path
+Open the ***resnet50-fdinf.py*** and change the ***workspace*** and ***caffe_root*** to your path.
 
 Type `python resnet50-fdinf.py` in the console and you will know the classify result, excution time and Top5.
 
