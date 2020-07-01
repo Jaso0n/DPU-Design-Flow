@@ -8,7 +8,6 @@ The caffe model file ***ResNet-50-deploy.caffemodel*** is too big to upload, you
 
 
 # How to run this demo?
-**1.Change the env values in resnet50-fdinf.py** 
 
 Change the ***workspace*** and ***caffe_root*** to your path
 
